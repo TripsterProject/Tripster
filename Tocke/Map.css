@@ -1,0 +1,51 @@
+body {
+  background-color: #1A1A1A
+}
+
+.map {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.RMarker {
+  height: 50px;
+  width: 50px;
+  background-image: url(RMarker.png);
+}
+
+.RMarkerP {
+  height: 50px;
+  width: 50px;
+  background-image: url(RMarkerP.png);
+}
+
+.RMarkerG {
+  height: 50px;
+  width: 50px;
+  background-image: url(RMarkerG.png);
+}
+
+.RMarkerR {
+  height: 50px;
+  width: 50px;
+  background-image: url(RMarkerR.png);
+}
+
+.mapboxgl-popup {
+  padding-bottom: 50px;
+}
+
+.mapboxgl-ctrl-geocoder {
+  border: 0;
+  border-radius: 0;
+  position: relative;
+  top: 0;
+  width: 800px;
+  margin-top: 0;
+}
+
+.mapboxgl-ctrl-geocoder > div {
+  min-width: 100%;
+  margin-left: 0;
+}
