@@ -8,11 +8,21 @@ if (!('remove' in Element.prototype)) {
 }
 
 var poljeTock = [];
+var carLocation = [14.5058, 46.0569];
+var startingLocation = [14.5058, 46.0569];
+var lastAtRestaurant = 0;
+var keepTrack = [];
+var currentRoute = null;
+var pointHopper = {};
+var dropoffs = turf.featureCollection([]);
+var nothing = turf.featureCollection([]);
+var warehouse = turf.featureCollection([turf.point(startingLocation)]);
+var opcije = { units: 'kilometers' };
 
 var map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/meresophisticated/cjo35mit8cmnk2rpe8gsrp8ck',
-  center: [14.506738, 46.043781],
+  style: 'mapbox://styles/mapbox/light-v9',
+  center: carLocation,
   zoom: 11.5
 });
 
@@ -21,12 +31,120 @@ map.on('load', function(e) {
     type: 'geojson',
     data: restavracije
   });
-  var geocoder = new MapboxGeocoder({
+  /*var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     bbox: [13.6981099789, 45.4523163926, 16.5648083839, 46.8523859727]
-  });
+  });*/
+  var markerT = document.createElement('div');
+  markerT.classList = 'startingPoint';
 
-  map.addControl(geocoder, 'top-left');
+  // Create a new marker
+  truckMarker = new mapboxgl.Marker(markerT)
+    .setLngLat(carLocation)
+    .addTo(map);
+
+    // Create a circle layer
+    map.addLayer({
+      id: 'warehouse',
+      type: 'circle',
+      source: {
+        data: warehouse,
+        type: 'geojson'
+      },
+      paint: {
+        'circle-radius': 20,
+        'circle-color': 'white',
+        'circle-stroke-color': '#3887be',
+        'circle-stroke-width': 3
+      }
+    });
+
+    map.addLayer({
+      id: 'warehouse-symbol',
+      type: 'symbol',
+      source: {
+        data: warehouse,
+        type: 'geojson'
+      },
+      layout: {
+        'icon-image': 'grocery-15',
+        'icon-size': 1
+      },
+      paint: {
+        'text-color': '#3887be'
+      }
+    });
+
+    map.addLayer({
+      id: 'dropoffs-symbol',
+      type: 'symbol',
+      source: {
+        data: dropoffs,
+        type: 'geojson'
+      },
+      layout: {
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+        'icon-image': 'marker-15',
+      }
+    });
+
+    map.on('click', function(e) {
+      // When the map is clicked, add a new drop-off point
+      // and update the `dropoffs-symbol` layer
+      newDropoff(map.unproject(e.point));
+      updateDropoffs(dropoffs);
+    });
+    map.addSource('route', {
+      type: 'geojson',
+      data: nothing
+    });
+
+    map.addLayer({
+      id: 'routeline-active',
+      type: 'line',
+      source: 'route',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      paint: {
+        'line-color': '#3887be',
+        'line-width': {
+          base: 1,
+          stops: [
+            [12, 3],
+            [22, 12]
+          ]
+        }
+      }
+    }, 'waterway-label');
+
+    map.addLayer({
+    id: 'routearrows',
+    type: 'symbol',
+    source: 'route',
+    layout: {
+      'symbol-placement': 'line',
+      'text-field': '▶',
+      'text-size': {
+        base: 1,
+        stops: [[12, 24], [22, 60]]
+      },
+      'symbol-spacing': {
+        base: 1,
+        stops: [[12, 30], [22, 160]]
+      },
+      'text-keep-upright': false
+    },
+    paint: {
+      'text-color': '#3887be',
+      'text-halo-color': 'hsl(55, 11%, 96%)',
+      'text-halo-width': 3
+    }
+    }, 'waterway-label');
+
+  /*map.addControl(geocoder, 'top-left');
   map.addSource('single-point', {
     type: 'geojson',
     data: {
@@ -68,7 +186,7 @@ map.on('load', function(e) {
     });
     //window.alert("Konec");
     //ustvari();
-  });
+  });*/
 
 });
 
@@ -132,3 +250,120 @@ restavracije.features.forEach(function(marker) {
     listing.classList.add('active');
   });
 })
+
+
+//to maybe prestavi pred map on load
+function newDropoff(coords) {
+  // Store the clicked point as a new GeoJSON feature with
+  // two properties: `orderTime` and `key`
+  var tocka = turf.point(
+    [coords.lng, coords.lat], {
+      orderTime: Date.now(),
+      key: Math.random()
+    }
+  );
+  dropoffs.features.push(tocka);
+  pointHopper[tocka.properties.key] = tocka;
+
+  // Make a request to the Optimization API
+  $.ajax({
+    method: 'GET',
+    url: assembleQueryURL(),
+  }).done(function(data) {
+    // Create a GeoJSON feature collection
+    var routeGeoJSON = turf.featureCollection([turf.feature(data.trips[0].geometry)]);
+
+    // If there is no route provided, reset
+    if (!data.trips[0]) {
+      routeGeoJSON = nothing;
+    } else {
+      // Update the `route` source by getting the route source
+      // and setting the data equal to routeGeoJSON
+      map.getSource('route')
+        .setData(routeGeoJSON);
+    }
+    //console.log(JSON.stringify(routeGeoJSON));
+    var koordinatePoti=routeGeoJSON.features[0].geometry;
+    poljeTock.forEach(function(e){
+      e.style.visibility="hidden";
+    });
+    restavracije.features.forEach(function(restavracija, index) {
+      koordinatePoti.coordinates.forEach(function(e){
+        console.log(JSON.stringify(e));
+        Object.defineProperty(restavracija.properties, 'distance', {
+          value: turf.distance(e, restavracija.geometry, opcije),
+          writable: true,
+          enumerable: true,
+          configurable: true
+        });
+        if(restavracija.properties.distance<4)
+        {
+          poljeTock[index].style.visibility="visible";
+        }
+      });
+
+
+    });
+
+    if (data.waypoints.length === 12) {
+      window.alert('Maximum number of points reached. Read more at mapbox.com/api-documentation/#optimization.');
+    }
+  });
+}
+
+function updateDropoffs(geojson) {
+  map.getSource('dropoffs-symbol')
+    .setData(geojson);
+}
+
+
+function assembleQueryURL() {
+  // Store the location of the truck in a variable called coordinates
+  var coordinates = [carLocation];
+  var distributions = [];
+  keepTrack = [carLocation];
+
+  // Create an array of GeoJSON feature collections for each point
+  var restJobs = objectToArray(pointHopper);
+
+  // If there are actually orders from this restaurant
+  if (restJobs.length > 0) {
+
+    // Check to see if the request was made after visiting the restaurant
+    var needToPickUp = restJobs.filter(function(d, i) {
+      return d.properties.orderTime > lastAtRestaurant;
+    }).length > 0;
+
+    // If the request was made after picking up from the restaurant,
+    // Add the restaurant as an additional stop
+    if (needToPickUp) {
+      var restaurantIndex = coordinates.length;
+      // Add the restaurant as a coordinate
+      coordinates.push(startingLocation);
+      // push the restaurant itself into the array
+      keepTrack.push(pointHopper.warehouse);
+    }
+
+    restJobs.forEach(function(d, i) {
+      // Add dropoff to list
+      keepTrack.push(d);
+      coordinates.push(d.geometry.coordinates);
+      // if order not yet picked up, add a reroute
+      if (needToPickUp && d.properties.orderTime > lastAtRestaurant) {
+        distributions.push(restaurantIndex + ',' + (coordinates.length - 1));
+      }
+    });
+  }
+
+  // Set the profile to `driving`
+  // Coordinates will include the current location of the truck,
+  return 'https://api.mapbox.com/optimized-trips/v1/mapbox/driving/' + coordinates.join(';') + '?distributions=' + distributions.join(';') + '&overview=full&steps=true&geometries=geojson&source=first&access_token=' + mapboxgl.accessToken;
+}
+
+function objectToArray(obj) {
+  var keys = Object.keys(obj);
+  var routeGeoJSON = keys.map(function(key) {
+    return obj[key];
+  });
+  return routeGeoJSON;
+}
