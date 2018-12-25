@@ -203,7 +203,8 @@ function ustvariPopUp(trenutna) {
       '<p> <b>' + trenutna.properties.tip + '</b> <br/>' +
        trenutna.properties.naslov + '<br/>' +
       'Odprto: ' + trenutna.properties.odpre + ' - ' + trenutna.properties.zapre +
-      '<br/> Razdalja: ' + trenutna.properties.distance  + ' km </p>')
+      '<br/> Razdalja: ' + trenutna.properties.distance  + ' km </p>'+
+      '<button type="button" class="dodaj">Dodaj</button>')
     .addTo(map);
   }else{
     var popup = new mapboxgl.Popup({ closeOnClick: true })
@@ -211,7 +212,8 @@ function ustvariPopUp(trenutna) {
     .setHTML('<h3>'+trenutna.properties.naziv+'</h3>' +
       '<p> <b>' + trenutna.properties.tip + '</b> <br/>' +
        trenutna.properties.naslov + '<br/>' +
-      'Odprto: ' + trenutna.properties.odpre + ' - ' + trenutna.properties.zapre + '</p>')
+      'Odprto: ' + trenutna.properties.odpre + ' - ' + trenutna.properties.zapre + '</p>' +
+       '<button type="button" class="dodaj">Dodaj</button>')
     .addTo(map);
   }
 }
