@@ -8,8 +8,8 @@ if (!('remove' in Element.prototype)) {
 }
 
 var poljeTock = [];
-var carLocation = [14.5058, 46.0569];
-var startingLocation = [14.5058, 46.0569];
+var carLocation = [14.505548,46.056487];
+var startingLocation = [14.505548,46.056487];
 var lastAtRestaurant = 0;
 var keepTrack = [];
 var currentRoute = null;
@@ -247,9 +247,6 @@ restavracije.features.forEach(function(marker) {
     if (aktivni[0]) {
       aktivni[0].classList.remove('active');
     }
-    var listing = document.getElementById('listing-' + i);
-    console.log(listing);
-    listing.classList.add('active');
   });
 })
 
@@ -289,22 +286,77 @@ function newDropoff(coords) {
     poljeTock.forEach(function(e){
       e.style.visibility="hidden";
     });
+    //izpis vseh razd
+    /*
+    koordinatePoti.coordinates.forEach(function(e, index1){
+      console.log(turf.distance(e, eprej, opcije)*1000+ " metrov");
+      eprej=e;
+    });*/
+    //izpis vseh koordinat
+    /*var prejsnja=0, razdalja=1;
+    var eprej=koordinatePoti.coordinates[0], maxRazdalja=0.0002;
+    maxRazdalja+=0.0002*Math.floor(koordinatePoti.coordinates.length/1000);
+    console.log(maxRazdalja);
+    koordinatePoti.coordinates.forEach(function(e, index1){
+      if(razdalja==0)
+      {
+        razdalja=Math.abs((e[0]+e[1])-prejsnja);
+      }
+      if(razdalja>maxRazdalja)
+      {
+        console.log(index1+" "+JSON.stringify(e)+ " " + razdalja);
+        console.log(turf.distance(e, eprej, opcije)*1000+ " metrov");
+        razdalja=0;
+        eprej=e;
+      }else {
+        razdalja+=Math.abs((e[0]+e[1])-prejsnja);
+        //console.log(index1+" premalo " + razdalja);
+      }
+      prejsnja=e[0]+e[1];
+    });*/
     restavracije.features.forEach(function(restavracija, index) {
-      koordinatePoti.coordinates.forEach(function(e){
-        console.log(JSON.stringify(e));
-        Object.defineProperty(restavracija.properties, 'distance', {
-          value: turf.distance(e, restavracija.geometry, opcije),
-          writable: true,
-          enumerable: true,
-          configurable: true
-        });
-        if(restavracija.properties.distance<4)
+      var prejsnja=0, razlika=1, razdalja=0, maxRazdalja=0.0002;
+      maxRazdalja+=0.0002*Math.floor(koordinatePoti.coordinates.length/1000);
+      console.log(maxRazdalja);
+      koordinatePoti.coordinates.forEach(function(e, index1){
+        if(razlika==0)
         {
-          poljeTock[index].style.visibility="visible";
+          razlika=Math.abs((e[0]+e[1])-prejsnja);
         }
+        if(razlika>maxRazdalja)
+        {
+          razdalja=turf.distance(e, restavracija.geometry, opcije);
+          if(restavracija.properties.distance)
+          {
+            if(razdalja<restavracija.properties.distance)
+            {
+              console.log(index+ " " + restavracija.properties.distance + " km --> " + razdalja + " km");
+              restavracija.properties.distance=razdalja;
+            }
+          }else{
+            Object.defineProperty(restavracija.properties, 'distance', {
+            value: turf.distance(e, restavracija.geometry, opcije),
+            writable: true,
+            enumerable: true,
+            configurable: true
+            });
+          }
+          if(restavracija.properties.distance<4)
+          {
+            //console.log(index+ " " + restavracija.properties.distance + " metrov");
+            poljeTock[index].style.visibility="visible";
+          }
+          //console.log(index+ " " + turf.distance(e, eprej, opcije)*1000+ " metrov");
+          razlika=0;
+          //eprej=e;
+          //if(restavracija.properties.distance)
+        }else {
+          razlika+=Math.abs((e[0]+e[1])-prejsnja);
+          //console.log(index1+" premalo " + razdalja);
+        }
+        prejsnja=e[0]+e[1];
+        //console.log(JSON.stringify(e));
       });
-
-
     });
 
     if (data.waypoints.length === 12) {
