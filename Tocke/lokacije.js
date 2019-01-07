@@ -256,6 +256,40 @@ var restavracije =
           "zapre": "21:00",
           "naslov": "Grajska cesta 61"
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            15.042040,
+            45.897170
+          ]
+        },
+        "properties": {
+          "naziv": "Gostilna Rakar",
+          "tip": "Gostilna",
+          "odpre": "11:00",
+          "zapre": "22:00",
+          "naslov": "Gorenje Ponikve 8"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            15.491050,
+            45.970060
+          ]
+        },
+        "properties": {
+          "naziv": "Tri Lučke",
+          "tip": "Restavracija",
+          "odpre": "12:00",
+          "zapre": "22:00",
+          "naslov": "Sremič 23"
+        }
       }
     ]
   }
