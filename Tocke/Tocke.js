@@ -8,8 +8,8 @@ if (!('remove' in Element.prototype)) {
 }
 
 var poljeTock = [];
-var carLocation = [14.505548,46.056487];
-var startingLocation = [14.505548,46.056487];
+var carLocation;
+var startingLocation;
 var lastAtRestaurant = 0;
 var iMax=4;
 var keepTrack = [];
@@ -17,207 +17,20 @@ var currentRoute = null;
 var pointHopper = {};
 var dropoffs = turf.featureCollection([]);
 var nothing = turf.featureCollection([]);
-var warehouse = turf.featureCollection([turf.point(startingLocation)]);
 var opcije = { units: 'kilometers' };
 
 var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/light-v9',
-  center: carLocation,
+  center: [14.505548,46.056487],
   zoom: 11.5
 });
 
-map.on('load', function(e) {
-  map.addSource('places', {
-    type: 'geojson',
-    data: restavracije
-  });
-  /*var geocoder = new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    bbox: [13.6981099789, 45.4523163926, 16.5648083839, 46.8523859727]
-  });*/
-  var markerT = document.createElement('div');
-  markerT.classList = 'startingPoint';
-
-  // Create a new marker
-  truckMarker = new mapboxgl.Marker(markerT)
-    .setLngLat(carLocation)
-    .addTo(map);
-
-    // Create a circle layer
-    map.addLayer({
-      id: 'warehouse',
-      type: 'circle',
-      source: {
-        data: warehouse,
-        type: 'geojson'
-      },
-      paint: {
-        'circle-radius': 20,
-        'circle-color': 'white',
-        'circle-stroke-color': '#3887be',
-        'circle-stroke-width': 3
-      }
-    });
-
-    map.addLayer({
-      id: 'warehouse-symbol',
-      type: 'symbol',
-      source: {
-        data: warehouse,
-        type: 'geojson'
-      },
-      layout: {
-        'icon-image': 'grocery-15',
-        'icon-size': 1
-      },
-      paint: {
-        'text-color': '#3887be'
-      }
-    });
-
-    map.addLayer({
-      id: 'dropoffs-symbol',
-      type: 'symbol',
-      source: {
-        data: dropoffs,
-        type: 'geojson'
-      },
-      layout: {
-        'icon-allow-overlap': true,
-        'icon-ignore-placement': true,
-        'icon-image': 'marker-15',
-      }
-    });
-
-    map.on('click', function(e) {
-      // When the map is clicked, add a new drop-off point
-      // and update the `dropoffs-symbol` layer
-      newDropoff(map.unproject(e.point));
-      updateDropoffs(dropoffs);
-    });
-    map.addSource('route', {
-      type: 'geojson',
-      data: nothing
-    });
-
-    map.addLayer({
-      id: 'routeline-active',
-      type: 'line',
-      source: 'route',
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round'
-      },
-      paint: {
-        'line-color': '#3887be',
-        'line-width': {
-          base: 1,
-          stops: [
-            [12, 3],
-            [22, 12]
-          ]
-        }
-      }
-    }, 'waterway-label');
-
-    map.addLayer({
-    id: 'routearrows',
-    type: 'symbol',
-    source: 'route',
-    layout: {
-      'symbol-placement': 'line',
-      'text-field': '▶',
-      'text-size': {
-        base: 1,
-        stops: [[12, 24], [22, 60]]
-      },
-      'symbol-spacing': {
-        base: 1,
-        stops: [[12, 30], [22, 160]]
-      },
-      'text-keep-upright': false
-    },
-    paint: {
-      'text-color': '#3887be',
-      'text-halo-color': 'hsl(55, 11%, 96%)',
-      'text-halo-width': 3
-    }
-    }, 'waterway-label');
-
-  /*map.addControl(geocoder, 'top-left');
-  map.addSource('single-point', {
-    type: 'geojson',
-    data: {
-      type: 'FeatureCollection',
-      features: []
-    }
-  });
-
-  map.addLayer({
-    id: 'point',
-    source: 'single-point',
-    type: 'circle',
-    paint: {
-      'circle-radius': 10,
-      'circle-color': '#007cbf',
-      'circle-stroke-width': 3,
-      'circle-stroke-color': '#fff'
-    }
-  });
-
-  geocoder.on('result', function(ev) {
-    var rezultat = ev.result.geometry;
-    map.getSource('single-point').setData(rezultat);
-    var opcije = { units: 'kilometers' };
-    restavracije.features.forEach(function(restavracija, index) {
-      Object.defineProperty(restavracija.properties, 'distance', {
-        value: turf.distance(rezultat, restavracija.geometry, opcije),
-        writable: true,
-        enumerable: true,
-        configurable: true
-      });
-      if(restavracija.properties.distance>4)
-      {
-        poljeTock[index].style.visibility="hidden";
-      }else{
-        poljeTock[index].style.visibility="visible";
-      }
-
-    });
-    //window.alert("Konec");
-    //ustvari();
-  });*/
-
+var geocoder = new MapboxGeocoder({
+  accessToken: mapboxgl.accessToken,
+  country: 'si'
 });
 
-function ustvariPopUp(trenutna) {
-  var popUps = document.getElementsByClassName('mapboxgl-popup');
-  if (popUps[0])
-  {
-    popUps[0].remove();
-  }
-  if (trenutna.properties.distance){
-    var popup = new mapboxgl.Popup({ closeOnClick: true })
-    .setLngLat(trenutna.geometry.coordinates)
-    .setHTML('<h3>'+trenutna.properties.naziv+'</h3>' +
-      '<p> <b>' + trenutna.properties.tip + '</b> <br/>' +
-       trenutna.properties.naslov + '<br/>' +
-      'Odprto: ' + trenutna.properties.odpre + ' - ' + trenutna.properties.zapre +
-      '<br/> Razdalja: ' + trenutna.properties.distance  + ' km </p>'+
-      '<button type="button" class="dodaj">Dodaj</button>')
-    .addTo(map);
-  }else{
-    var popup = new mapboxgl.Popup({ closeOnClick: true })
-    .setLngLat(trenutna.geometry.coordinates)
-    .setHTML('<h3>'+trenutna.properties.naziv+'</h3>' +
-      '<p> <b>' + trenutna.properties.tip + '</b> <br/>' +
-       trenutna.properties.naslov + '<br/>' +
-      'Odprto: ' + trenutna.properties.odpre + ' - ' + trenutna.properties.zapre + '</p>' +
-       '<button type="button" class="dodaj">Dodaj</button>')
-    .addTo(map);
-  }
-}
 
 restavracije.features.forEach(function(marker) {
   //window.alert(marker.properties.distance);
@@ -252,7 +65,6 @@ restavracije.features.forEach(function(marker) {
 })
 
 
-//to maybe prestavi pred map on load
 function newDropoff(coords) {
   // Store the clicked point as a new GeoJSON feature with
   // two properties: `orderTime` and `key`
@@ -282,39 +94,12 @@ function newDropoff(coords) {
       map.getSource('route')
         .setData(routeGeoJSON);
     }
-    //console.log(JSON.stringify(routeGeoJSON));
+
     var koordinatePoti=routeGeoJSON.features[0].geometry;
     poljeTock.forEach(function(e){
-      e.style.visibility="hidden";
+      e.classList.add("Hidden");
     });
-    //izpis vseh razd
-    /*
-    koordinatePoti.coordinates.forEach(function(e, index1){
-      console.log(turf.distance(e, eprej, opcije)*1000+ " metrov");
-      eprej=e;
-    });*/
-    //izpis vseh koordinat
-    /*var prejsnja=0, razdalja=1;
-    var eprej=koordinatePoti.coordinates[0], maxRazdalja=0.0002;
-    maxRazdalja+=0.0002*Math.floor(koordinatePoti.coordinates.length/1000);
-    console.log(maxRazdalja);
-    koordinatePoti.coordinates.forEach(function(e, index1){
-      if(razdalja==0)
-      {
-        razdalja=Math.abs((e[0]+e[1])-prejsnja);
-      }
-      if(razdalja>maxRazdalja)
-      {
-        console.log(index1+" "+JSON.stringify(e)+ " " + razdalja);
-        console.log(turf.distance(e, eprej, opcije)*1000+ " metrov");
-        razdalja=0;
-        eprej=e;
-      }else {
-        razdalja+=Math.abs((e[0]+e[1])-prejsnja);
-        //console.log(index1+" premalo " + razdalja);
-      }
-      prejsnja=e[0]+e[1];
-    });*/
+
     restavracije.features.forEach(function(restavracija, index) {
       var prejsnja=0, razlika=1, razdalja=0, maxRazdalja=0.0002;
       maxRazdalja+=0.0002*Math.floor(koordinatePoti.coordinates.length/1000);
@@ -353,6 +138,7 @@ function newDropoff(coords) {
             {
               //console.log(index+ " " + restavracija.properties.distance + " metrov");
               poljeTock[index].style.visibility="visible";
+              poljeTock[index].classList.remove("Hidden");
             }
             //console.log(index+ " " + turf.distance(e, eprej, opcije)*1000+ " metrov");
             razlika=0;
@@ -392,35 +178,18 @@ function assembleQueryURL() {
   // If there are actually orders from this restaurant
   if (restJobs.length > 0) {
 
-    // Check to see if the request was made after visiting the restaurant
-    var needToPickUp = restJobs.filter(function(d, i) {
-      return d.properties.orderTime > lastAtRestaurant;
-    }).length > 0;
-
-    // If the request was made after picking up from the restaurant,
-    // Add the restaurant as an additional stop
-    if (needToPickUp) {
-      var restaurantIndex = coordinates.length;
-      // Add the restaurant as a coordinate
-      coordinates.push(startingLocation);
-      // push the restaurant itself into the array
-      keepTrack.push(pointHopper.warehouse);
-    }
 
     restJobs.forEach(function(d, i) {
       // Add dropoff to list
       keepTrack.push(d);
       coordinates.push(d.geometry.coordinates);
-      // if order not yet picked up, add a reroute
-      if (needToPickUp && d.properties.orderTime > lastAtRestaurant) {
-        distributions.push(restaurantIndex + ',' + (coordinates.length - 1));
-      }
+
     });
   }
 
   // Set the profile to `driving`
   // Coordinates will include the current location of the truck,
-  return 'https://api.mapbox.com/optimized-trips/v1/mapbox/driving/' + coordinates.join(';') + '?distributions=' + distributions.join(';') + '&overview=full&steps=true&geometries=geojson&source=first&access_token=' + mapboxgl.accessToken;
+  return 'https://api.mapbox.com/optimized-trips/v1/mapbox/driving/' + coordinates.join(';')  + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
 }
 
 function objectToArray(obj) {
@@ -429,4 +198,203 @@ function objectToArray(obj) {
     return obj[key];
   });
   return routeGeoJSON;
+}
+
+function SkrijPrikazi()
+{
+  var polje=document.getElementsByClassName("Hidden");
+  for (i = 0; i < polje.length; i++)
+  {
+    if(polje[i].style.visibility=="hidden")
+    {
+      polje[i].style.visibility="visible";
+    }else{
+      polje[i].style.visibility="hidden";
+    }
+  }
+}
+
+map.on('load', function(e) {
+  map.addSource('places', {
+    type: 'geojson',
+    data: restavracije
+  });
+
+  map.addControl(geocoder);
+/*  var markerT = document.createElement('div');
+  markerT.classList = 'startingPoint';
+
+  // Create a new marker
+  truckMarker = new mapboxgl.Marker(markerT)
+    .setLngLat(carLocation)
+    .addTo(map); */
+    geocoder.on('result', function(ev) {
+
+      dropoffs = turf.featureCollection([]); //izbriše markerje
+      //coordinates = []; //ne pomaga
+      pointHopper = [];
+
+      map.getSource('single-point').setData(ev.result.geometry);
+      startingLocation=ev.result.geometry.coordinates;
+      carLocation=ev.result.geometry.coordinates;
+
+
+
+
+
+
+    });
+
+    map.addSource('single-point', {
+      "type": "geojson",
+      "data": {
+        "type": "FeatureCollection",
+        "features": []
+      }
+    });
+
+    map.addLayer({
+      id: "warehouse",
+      source: "single-point",
+      type: "circle",
+      paint: {
+        'circle-radius': 20,
+        'circle-color': 'white',
+        'circle-stroke-color': '#3887be',
+        'circle-stroke-width': 3
+      }
+
+    });
+
+
+
+
+
+    map.addLayer({
+      id: 'dropoffs-symbol',
+      type: 'symbol',
+      source: {
+        data: dropoffs,
+        type: 'geojson'
+      },
+      layout: {
+        'icon-allow-overlap': true,
+        'icon-ignore-placement': true,
+        'icon-image': 'marker-15',
+      }
+    });
+
+
+    // Čaka na klik na zemljevid
+    map.on('click', function(e) {
+      // Ob kliku na zemljevid doda novo drop-off točko
+      // in osveži `dropoffs-symbol` layer
+      newDropoff(map.unproject(e.point));
+      updateDropoffs(dropoffs);
+
+    });
+
+    map.addSource('route', {
+      type: 'geojson',
+      data: nothing
+    });
+
+    map.addLayer({
+      id: 'routeline-active',
+      type: 'line',
+      source: 'route',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      paint: {
+        'line-color': '#3887be',
+        'line-width': {
+          base: 1,
+          stops: [
+            [12, 3],
+            [22, 12]
+          ]
+        }
+      }
+    }, 'waterway-label');
+
+    map.addLayer({
+      id: 'routearrows',
+      type: 'symbol',
+      source: 'route',
+      layout: {
+        'symbol-placement': 'line',
+        'text-field': '▶',
+        'text-size': {
+          base: 1,
+          stops: [[12, 24], [22, 60]]
+        },
+        'symbol-spacing': {
+          base: 1,
+          stops: [[12, 30], [22, 160]]
+        },
+        'text-keep-upright': false
+      },
+      paint: {
+        'text-color': '#3887be',
+        'text-halo-color': 'hsl(55, 11%, 96%)',
+        'text-halo-width': 3
+      }
+    }, 'waterway-label');
+
+    document.getElementById("GumbSkrij").onclick=SkrijPrikazi;
+
+
+});
+
+
+// Čaka na klik na zemljevid
+function dodajTocko(lng, lat){
+  // Ob kliku na zemljevid doda novo drop-off točko
+  // in osveži `dropoffs-symbol` layer
+  var coords = {
+    "lng": lng,
+    "lat": lat
+  };
+  newDropoff(coords);
+  updateDropoffs(dropoffs);
+
+}
+
+
+var zacasna;
+function ustvariPopUp(trenutna) {
+  var popUps = document.getElementsByClassName('mapboxgl-popup');
+  if (popUps[0])
+  {
+    popUps[0].remove();
+  }
+  var stringHTML='<h3>'+trenutna.properties.naziv+'</h3>' +
+    '<p> <b>' + trenutna.properties.tip + '</b> <br/>';
+  if(trenutna.properties.naslov)
+  {
+    stringHTML+=trenutna.properties.naslov + '<br/>'
+  }
+  if(trenutna.properties.odpre&&trenutna.properties.zapre)
+  {
+    stringHTML+='Odprto: ' + trenutna.properties.odpre + ' - ' + trenutna.properties.zapre + '<br/>'
+  }
+  if (trenutna.properties.dodatno)
+  {
+    stringHTML+='<b><a href='+trenutna.properties.dodatno+' target=_blank>Več informacij</a></b><br/>'
+  }
+  if (trenutna.properties.distance)
+  {
+    stringHTML+='Razdalja: ' + parseFloat(trenutna.properties.distance.toFixed(3))  + ' km </p>'
+  }
+  zacasna=
+  stringHTML+='<button type="button" class="dodaj" onClick="dodajTocko('+trenutna.geometry.coordinates[0]+","+trenutna.geometry.coordinates[1]+')" >Dodaj</button>';
+  //stringHTML+='<button type="button" class="dodaj" onClick="window.alert('+trenutna.geometry.coordinates+')" >Dodaj</button>';
+  var popup = new mapboxgl.Popup({ closeOnClick: true })
+  .setLngLat(trenutna.geometry.coordinates)
+  .setHTML(stringHTML)
+  .addTo(map);
+
+
 }
