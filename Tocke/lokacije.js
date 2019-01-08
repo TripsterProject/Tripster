@@ -16,7 +16,8 @@ var restavracije =
           "tip": "Pizzerija",
           "odpre": "12:00",
           "zapre": "22:00",
-          "naslov": "Grudnovo nabrezhje 21"
+          "naslov": "Grudnovo nabrezhje 21",
+          "dodatno": "https://www.trta.si/"
         }
       },
       {
@@ -33,7 +34,8 @@ var restavracije =
           "tip": "Gostilna",
           "odpre": "12:00",
           "zapre": "23:00",
-          "naslov": "Čopova ulica 5a"
+          "naslov": "Čopova ulica 5a",
+          "dodatno": "http://www.gostilnaas.si/"
         }
       },
       {
@@ -50,7 +52,8 @@ var restavracije =
           "tip": "Restavracija",
           "odpre": "12:00",
           "zapre": "22:00",
-          "naslov": "Šmartinska cesta 55"
+          "naslov": "Šmartinska cesta 55",
+          "dodatno": "https://www.cubo.si/"
         }
       },
       {
@@ -67,7 +70,8 @@ var restavracije =
           "tip": "Restavracija",
           "odpre": "11:30",
           "zapre": "23:00",
-          "naslov": "Šmartinska cesta 55"
+          "naslov": "Šmartinska cesta 55",
+          "dodatno": "http://sushimama.si/"
         }
       },
       {
@@ -84,7 +88,8 @@ var restavracije =
           "tip": "Gostilna",
           "odpre": "12:00",
           "zapre": "22:00",
-          "naslov": "Križ 53"
+          "naslov": "Križ 53",
+          "dodatno": "http://www.gostilna-cubr.com/"
         }
       },
       {
@@ -101,7 +106,8 @@ var restavracije =
           "tip": "Gostilna",
           "odpre": "12:00",
           "zapre": "22:00",
-          "naslov": "Zgornje Pirniče 54"
+          "naslov": "Zgornje Pirniče 54",
+          "dodatno": "https://vivi.si/gostilna/mihovec/"
         }
       },
       {
@@ -118,7 +124,8 @@ var restavracije =
           "tip": "Restavracija",
           "odpre": "11:00",
           "zapre": "22:00",
-          "naslov": "Novo Celje 9"
+          "naslov": "Novo Celje 9",
+          "dodatno": "https://www.galerijaokusov.si/"
         }
       },
       {
@@ -135,7 +142,8 @@ var restavracije =
           "tip": "Gostilna",
           "odpre": "11:00",
           "zapre": "22:00",
-          "naslov": "Zagrad 77"
+          "naslov": "Zagrad 77",
+          "dodatno": "http://www.gostilnafrancl.si/"
         }
       },
       {
@@ -152,7 +160,8 @@ var restavracije =
           "tip": "Gostilna",
           "odpre": "11:00",
           "zapre": "22:00",
-          "naslov": "Soboška ulica 32"
+          "naslov": "Soboška ulica 32",
+          "dodatno": "https://www.rajh.si/en/"
         }
       },
       {
@@ -169,7 +178,8 @@ var restavracije =
           "tip": "Restavracija",
           "odpre": "12:00",
           "zapre": "15:00",
-          "naslov": "Slap 18"
+          "naslov": "Slap 18",
+          "dodatno": "http://www.majerija.si/en/"
         }
       },
       {
@@ -186,7 +196,8 @@ var restavracije =
           "tip": "Gostilna",
           "odpre": "12:00",
           "zapre": "22:00",
-          "naslov": "Rodik 51"
+          "naslov": "Rodik 51",
+          "dodatno": "https://gostilnamahorcic.wordpress.com/"
         }
       },
       {
@@ -203,7 +214,8 @@ var restavracije =
           "tip": "Gostilna",
           "odpre": "12:00",
           "zapre": "22:00",
-          "naslov": "Zemono 7"
+          "naslov": "Zemono 7",
+          "dodatno": "http://prilojzetu.si/gostilna.php"
         }
       },
       {
@@ -220,7 +232,8 @@ var restavracije =
           "tip": "Gostilna",
           "odpre": "11:00",
           "zapre": "21:00",
-          "naslov": "Delavska cesta 18"
+          "naslov": "Delavska cesta 18",
+          "dodatno": "http://ancka.si/"
         }
       },
       {
@@ -237,7 +250,8 @@ var restavracije =
           "tip": "Gostilna",
           "odpre": "12:00",
           "zapre": "22:00",
-          "naslov": "Reteče 48"
+          "naslov": "Reteče 48",
+          "dodatno": "https://www.danilogostilna.si/"
         }
       },
       {
@@ -254,7 +268,8 @@ var restavracije =
           "tip": "Restavracija",
           "odpre": "8:00",
           "zapre": "21:00",
-          "naslov": "Grajska cesta 61"
+          "naslov": "Grajska cesta 61",
+          "dodatno": "http://www.jezersek.si/si/lokacije/restavracija-blejski-grad"
         }
       },
       {
@@ -271,7 +286,8 @@ var restavracije =
           "tip": "Gostilna",
           "odpre": "11:00",
           "zapre": "22:00",
-          "naslov": "Gorenje Ponikve 8"
+          "naslov": "Gorenje Ponikve 8",
+          "dodatno": "https://rakar.si/"
         }
       },
       {
@@ -288,7 +304,8 @@ var restavracije =
           "tip": "Restavracija",
           "odpre": "12:00",
           "zapre": "22:00",
-          "naslov": "Sremič 23"
+          "naslov": "Sremič 23",
+          "dodatno": "https://www.trilucke.si/"
         }
       }
     ]
