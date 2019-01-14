@@ -103,7 +103,7 @@ function newDropoff(coords) {
     restavracije.features.forEach(function(restavracija, index) {
       var prejsnja=0, razlika=1, razdalja=0, maxRazdalja=0.0002;
       maxRazdalja+=0.0002*Math.floor(koordinatePoti.coordinates.length/1000);
-      console.log(maxRazdalja);
+      //console.log(maxRazdalja);
       var skip=0;
       koordinatePoti.coordinates.forEach(function(e, index1){
         if(!skip){
@@ -118,11 +118,11 @@ function newDropoff(coords) {
             {
               if(razdalja<restavracija.properties.distance)
               {
-                console.log(index+ " " + restavracija.properties.distance + " km --> " + razdalja + " km");
+                //console.log(index+ " " + restavracija.properties.distance + " km --> " + razdalja + " km");
                 restavracija.properties.distance=razdalja;
               }else if(restavracija.properties.distance<iMax && razdalja>iMax*2)
               {
-                console.log("koncujem "+ razdalja);
+                //console.log("koncujem "+ razdalja);
                 skip=1;
                 //break;
               }
@@ -229,6 +229,11 @@ map.on('load', function(e) {
     .setLngLat(carLocation)
     .addTo(map); */
     geocoder.on('result', function(ev) {
+      var key="distance";
+      restavracije.features.forEach(function(feat){
+        delete feat.properties[key];
+      });
+      //console.log(JSON.stringify(restavracije.features));
 
       dropoffs = turf.featureCollection([]); //izbriše markerje
       //coordinates = []; //ne pomaga
