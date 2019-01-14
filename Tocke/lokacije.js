@@ -307,6 +307,313 @@ var restavracije =
           "naslov": "Sremič 23",
           "dodatno": "https://www.trilucke.si/"
         }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.508663,
+            46.049096
+          ]
+        },
+        "properties": {
+          "naziv": "Ljubljanski grad",
+          "tip": "Grad",
+          "odpre": "10:00",
+          "zapre": "8:00",
+          "naslov": "Grajska planota 1, 1000 Ljubljana",
+          "dodatno": "https://www.ljubljanskigrad.si/sl/ljubljanski-grad/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.856911,
+            46.023537
+          ]
+        },
+        "properties": {
+          "naziv": "Grad Bogenšperk",
+          "tip": "Grad",
+          "naslov": "Bogenšperk 5, 1275 Šmartno pri Litiji",
+          "dodatno": "https://www.bogensperk.si/en/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.097255,
+            46.370842
+          ]
+        },
+        "properties": {
+          "naziv": "Blejski grad",
+          "tip": "Grad",
+          "naslov": "Grajska cesta, 4260 Bled",
+          "dodatno": "http://www.blejski-grad.si/en/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            15.272196,
+            46.219670
+          ]
+        },
+        "properties": {
+          "naziv": "Celjski grad",
+          "tip": "Grad",
+          "naslov": "Cesta Na Grad 78, 3000 Celje",
+          "dodatno": "http://www.grad-celje.com"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.606760,
+            46.222707
+          ]
+        },
+        "properties": {
+          "naziv": "Grad Zaprice",
+          "tip": "Grad",
+          "naslov": " Muzejska Pot 3, 1241 Kamnik",
+          "dodatno": "https://www.muzej-kamnik-on.net/en/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.093807,
+            46.363913
+          ]
+        },
+        "properties": {
+          "naziv": "Blejsko jezero",
+          "tip": "Jezero",
+          "dodatno": "http://www.bled.si/si/kaj-videti/naravne-znamenitosti/blejsko-jezero"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.387970,
+            45.753256
+          ]
+        },
+        "properties": {
+          "naziv": "Cerkniško jezero",
+          "tip": "Jezero",
+          "dodatno": "http://www.slotrips.si/slo/naravne-znamenitosti/trip/964/Cerknisko-jezero"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.468687,
+            46.067309
+          ]
+        },
+        "properties": {
+          "naziv": "Koseški Bajer",
+          "tip": "Jezero",
+          "dodatno": "https://www.visitljubljana.com/sl/obiskovalci/aktivnosti/narava-in-aktivni-oddih/koseski-bajer/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.864531,
+            46.282265
+          ]
+        },
+        "properties": {
+          "naziv": "Bohinjsko jezero",
+          "tip": "Jezero",
+          "dodatno": "https://www.bohinj.si/znamenitosti/bohinjsko-jezero/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.864531,
+            46.282265
+          ]
+        },
+        "properties": {
+          "naziv": "Bohinjsko jezero",
+          "tip": "Jezero",
+          "dodatno": "https://www.bohinj.si/znamenitosti/bohinjsko-jezero/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.432112,
+            45.968453
+          ]
+        },
+        "properties": {
+          "naziv": "Podpeško Jezero",
+          "tip": "Jezero",
+          "dodatno": "http://www.dedi.si/dediscina/384-podpesko-jezero"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.505752,
+            46.056946
+          ]
+        },
+        "properties": {
+          "naziv": "Ljubljana",
+          "tip": "Mesto",
+          "dodatno": "https://www.visitljubljana.com/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.568080,
+            45.528149
+          ]
+        },
+        "properties": {
+          "naziv": "Piran",
+          "tip": "Mesto",
+          "dodatno": "https://www.piran.si/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            15.645881,
+            46.554649
+          ]
+        },
+        "properties": {
+          "naziv": "Maribor",
+          "tip": "Mesto",
+          "dodatno": "https://en.wikipedia.org/wiki/Maribor"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            15.267706,
+            46.239750
+          ]
+        },
+        "properties": {
+          "naziv": "Celje",
+          "tip": "Mesto",
+          "dodatno": "https://www.celje.si/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.355650,
+            46.239208
+          ]
+        },
+        "properties": {
+          "naziv": "Kranj",
+          "tip": "Mesto",
+          "dodatno": "https://www.kranj.si/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.355650,
+            46.239208
+          ]
+        },
+        "properties": {
+          "naziv": "Kranj",
+          "tip": "Mesto",
+          "dodatno": "https://www.kranj.si/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            13.730188,
+            45.548058
+          ]
+        },
+        "properties": {
+          "naziv": "Koper",
+          "tip": "Mesto",
+          "dodatno": "https://www.koper.si/sl/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            15.110658,
+            46.362274
+          ]
+        },
+        "properties": {
+          "naziv": "Velenje",
+          "tip": "Mesto",
+          "dodatno": "http://www.velenje.si/en/"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            14.611700,
+            46.225830
+          ]
+        },
+        "properties": {
+          "naziv": "Kamnik",
+          "tip": "Mesto",
+          "dodatno": "https://www.kamnik.si/"
+        }
       }
     ]
   }
