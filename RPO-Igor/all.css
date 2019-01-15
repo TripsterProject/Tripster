@@ -1,0 +1,154 @@
+body{
+background: white ;  
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center;
+background-size:cover;
+overflow-x :hidden; 
+margin:auto;
+}
+.body1{
+  margin-left: 250px;
+  margin-right : 250px;
+}
+.navbar {
+  overflow: hidden;
+  background-color: lightgrey;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
+.navbar a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+#home{
+	width:25px;
+	position:relative;
+	height:25px;
+	top:5.8px;
+}
+#trip{
+	width:25px;
+	position:relative;
+	height:25px;
+	top:5.8px;
+
+}
+
+
+
+#info{
+	width:25px;
+	position:relative;
+	height:25px;
+	top:5.8px;
+	margin-left:5px;
+}
+#contact{
+	width:25px;
+	position:relative;
+	height:25px;
+	top:5.8px;
+	margin-left:5px;
+
+}
+#lan{
+	width:25px;
+	position:relative;
+	height:25px;
+	top:5.8px;
+	margin-left:5px;
+
+}
+
+.naslov 
+{
+	font-size:40px;
+  text-align: center;
+  /*font-family: Impact, Charcoal, sans-serif;*/
+}
+p
+{
+font-size:17px;
+/*font-family: Impact, Charcoal, sans-serif;*/
+text-align: justify;
+}
+.middle {
+  display: inline-block;    
+  padding-top:50px;
+}
+.middle1 {
+  display: inline-block;    
+}
+.slika{
+  float:left;
+  width:50%;
+}
+
+#slika1{
+  width: 100%;
+  height: 300px;
+  padding-right: 9px;
+}
+#slika2{
+  width: 100%;
+  height: 300px;
+  padding-left:9px; 
+}
+.end {
+  width: auto;
+  height: auto;
+  padding-bottom:10px;
+  background-color: lightgrey;
+  color : black;
+  font-size:16px;
+}
+
+.end a {
+  line-height: 30px;
+  text-decoration: none !important;
+  color: black;
+}
+
+.end a:hover {
+  border-bottom:1px dotted black;
+}
+.endprvo {
+  float:left;
+  text-align: left;
+}
+.endtreto {
+  float:right;
+  text-align:right;
+}
+.endprvo , .enddrugo , .endtreto {
+  display:inline-block;
+}
+.linijaend {
+  text-align:center;
+  margin-left:195px;
+  margin-right:195px;
+}
+#logoend {
+  width: 470px;
+  height: 100px;
+}
+.endtext{
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 28%;
+
+}
