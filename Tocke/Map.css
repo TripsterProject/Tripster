@@ -32,6 +32,24 @@ body {
   background-image: url(RMarkerR.png);
 }
 
+.LMarkerJ {
+  height: 50px;
+  width: 50px;
+  background-image: url(LMarkerJ.png);
+}
+
+.LMarkerG {
+  height: 50px;
+  width: 50px;
+  background-image: url(LMarkerG.png);
+}
+
+.LMarkerM {
+  height: 50px;
+  width: 50px;
+  background-image: url(LMarkerM.png);
+}
+
 .mapboxgl-popup {
   padding-bottom: 50px;
 }

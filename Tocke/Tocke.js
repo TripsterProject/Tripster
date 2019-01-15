@@ -45,6 +45,15 @@ restavracije.features.forEach(function(marker) {
     case "Restavracija":
       element.className = 'RMarkerR';
       break;
+    case "Jezero":
+      element.className = 'LMarkerJ';
+      break;
+    case "Grad":
+      element.className = 'LMarkerG';
+      break;
+    case "Mesto":
+      element.className = 'LMarkerM';
+      break;
     default:
     element.className = 'RMarker';
 
