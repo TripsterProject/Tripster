@@ -1,0 +1,200 @@
+body{ 
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center;
+background-size:cover;
+overflow-x :hidden;
+margin:auto;
+}
+.navbar {
+  overflow: hidden;
+  background-color: lightgrey;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+}
+
+.navbar a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+#logo{
+	width:200px;
+	position:relative;
+	height:55px;
+}
+#home{
+	width:25px;
+	position:relative;
+	height:25px;
+	top:5.8px;
+}
+#trip{
+	width:25px;
+	position:relative;
+	height:25px;
+	top:5.8px;
+
+}
+
+
+
+#info{
+	width:25px;
+	position:relative;
+	height:25px;
+	top:5.8px;
+	margin-left:5px;
+}
+#contact{
+	width:25px;
+	position:relative;
+	height:25px;
+	top:5.8px;
+	margin-left:5px;
+
+}
+#lan{
+	width:25px;
+	position:relative;
+	height:25px;
+	top:5.8px;
+	margin-left:5px;
+
+}
+.end {
+	width: auto;
+	height: auto;
+	padding-bottom:10px;
+	background-color: lightgrey;
+	color : black;
+	font-size:16px;
+}
+
+.end a {
+	line-height: 30px;
+	text-decoration: none !important;
+	color: black;
+}
+
+.end a:hover {
+	border-bottom:1px dotted black;
+}
+.endprvo {
+	float:left;
+	text-align: left;
+}
+.endtreto {
+	float:right;
+	text-align:right;
+}
+.endprvo , .enddrugo , .endtreto {
+	display:inline-block;
+}
+.linijaend {
+	text-align:center;
+	margin-left:195px;
+	margin-right:195px;
+}
+#logoend {
+	width: 470px;
+	height: 100px;
+}
+.endtext{
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+  	width: 28%;
+  }
+.middle {
+	padding-top: 58px;
+	margin-left: 220px;
+	margin-right: 220px;
+	word-wrap: break-word;
+}
+#slika1 {
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+  		width: 100%;
+}
+.textslika1 {
+  position: absolute;
+  top: 340px;
+  left: 310px;
+  color:white;
+  opacity: 0.8;
+  font-family: 'EB Garamond',serif;
+  font-size: 40px;
+  letter-spacing: 0.1em;
+  display: block;
+  padding-top: 0.5em;
+  text-shadow: 0.07em 0.07em 0 rgba(0, 0, 0, 0.1);
+  
+  &::before, &::after {
+  content: "§";
+  display: inline-block;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+	opacity: 0.2;
+  margin: 0 0.6em;
+} }
+
+* {margin: 0; padding: 0;}
+ 
+ 
+ul {
+  list-style-type: none;
+  width: 500px;
+}
+ 
+h3 {
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+ 
+li img {
+  float: left;
+  margin: 0 15px 0 0;
+}
+ 
+li p {
+  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+ 
+li {
+  padding: 10px;
+  overflow: auto;
+}
+ 
+li:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+.slika {
+	width: 200px;
+	height: 150px;
+}
+.lokacii {
+	display: inline-block;
+}
+.levo {
+	float:left;
+	padding-right: 79px;
+}
+.desno {
+	float: right;
+}

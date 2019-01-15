@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+	<title>Planiraj svoj izlet!</title>
+	<link rel="stylesheet" type="text/css" href="izlet.css">
+</head>
+<body>
+	<div class="navbar">
+		<div class="prijava"><button class="btn1">Prijava</button></div>
+		<div class="language"><button class="btn2" href="">English<img src="sliki/lan.png"id="lan" alt="lan"></button></div>
+		<div class="contactus"><button class="btn3" href="">Contact us<img src="sliki/contact.png"id="contact" alt="contact"></button></div>
+		<div class="aboutus"><button class="btn4" href="">About us<img src="sliki/info.png"id="info" alt="info"></button></div>
+		<div class="trip"><button class="btn5" href="">Your Trip <img src="sliki/plane.png"id="trip" alt="trip"></button>
+		<div class="dropdown-content">
+			  <a href="#">Plan your trip</a>
+			  <a href="lokacii.html">Locations</a>
+			  <a href="#">Cities</a>
+		</div>
+		</div>
+		<div class="home"><button class="btn6" href="">Home <img src="sliki/ss.jpg"id="home" alt="home"></button></div>
+		<img src="sliki/logotocno.png" id="logo" alt="logo">
+	</div>
+	<div class="slideshow">
+		<img class="mySlides" id="travel1" src="sliki/travel1.jpg" >
+		<img class="mySlides" id="travel2" src="sliki/travel4.jpg" >
+		<img class="mySlides" src="sliki/road.jpg">
+		<div class="textslika1">LIVE ENJOY TRAVEL</div>
+		<div class="section">
+			<form>
+				<b><i>From: </i></b> <input class="textbox" type="text" name="from" value="Maribor">
+				<b><i>To: </i></b> <input class="textbox" type="text" name="to" value="Lake Bled">
+				<b><i>Date: </i></b><input class="textbox" type="date" name="datum" value="01.01.2019">
+				<input class="button" type="submit" value="Išči">
+			</form>
+		</div>
+
+		<button class="leftbtn" onclick="plusDivs(-1)">&#10094;</button>
+		<button class="rightbtn" onclick="plusDivs(1)">&#10095;</button>
+	</div>
+	<div id="bkc">
+		<p id="visit1">Visit the best places in Slovenia</p><br>
+		<div class="linija">
+			<div class="prva">
+				<img src="sliki/bled.jpg" id="slika1" alt="Bled">
+				<div class="top-left">Lake Bled</div>
+				<div class="middle">
+					<div class="text">
+						<a href="http://www.bled.si/en/what-to-see/natural-sights/lake-bled" style="text-decoration: none !important; color: black;">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="druga">
+				<img src="sliki/kranjska_gora.jpg" id="slika2" alt="Kranjska Gora">
+				<div class="top-right" style="color:white;">Kranjska Gora</div>
+				<div class="middle1">
+					<div class="text"><a href="https://www.kranjska-gora.si/en" style="text-decoration: none !important; color: black;">Read more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="linija">
+			<div class="prva">
+				<img src="sliki/postojna.jpg" id="slika1" alt="postojna">
+				<div class="top-left" style="color:white;">Postojna Cave</div>
+				<div class="middle">
+					<div class="text">
+						<a href="https://www.postojnska-jama.eu/en/" style="text-decoration: none !important; color: black;">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="druga">
+				<img src="sliki/piran.jpg" id="slika2" alt="Piran">
+				<div class="top-right">Piran</div>
+				<div class="middle1">
+					<div class="text"><a href="https://www.lonelyplanet.com/slovenia/karst-and-coast/piran" style="text-decoration: none !important; color: black;">Read more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="linija">
+			<div class="prva">
+				<img src="sliki/bohinj.jpg" id="slika1" alt="Bohinj">
+				<div class="top-left">Lake Bohinj</div>
+				<div class="middle">
+					<div class="text">
+						<a href="https://www.bohinj.si/en/" style="text-decoration: none !important; color: black;">Read more</a>
+					</div>
+				</div>
+			</div>
+			<div class="druga">
+				<img src="sliki/triglav.jpg" id="slika2" alt="Triglav National Park">
+				<div class="top-right" style="color:white;">Triglav National Park</div>
+				<div class="middle1">
+					<div class="text"><a href="https://www.tnp.si/en/learn/" style="text-decoration: none !important; color: black;">Read more</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="end" >
+		<div class="endtext"> <img src="sliki/logotocno.png" id="logoend"></div>
+		<div class="linijaend">
+			<div class="endprvo">
+				<a href="lokacii.html" >Location</a><br>
+				<a href="home.html" >Home</a><br>
+				<a href="trip.html" >Trip</a><br>
+				<a href="aboutus.html" >About us</a><br>
+				<a href="contact.html">Contact</a><br>
+			</div>
+			<div class="enddrugo">
+				<a href="cities.html" >Cities</a><br>
+				<a href="ljubljana.html" >Ljubljana</a><br>
+				<a href="maribor.html" >Maribor</a><br>
+				<a href="ptuj.html" >Ptuj</a><br>
+				<a href="piran.html">Piran</a><br>
+			</div>
+			<div class="endtreto">
+				<a href="lokacii.html" >Lake Bled</a><br>
+				<a href="home.html" >Kranjska Gora</a><br>
+				<a href="trip.html" >Postojna Cave</a><br>
+				<a href="aboutus.html" >Piran<br>
+				<a href="contact.html">Triglav</a><br>
+			</div>
+		</div>
+	</div>
+<script>
+	var slideIndex = 1;
+	showDivs(slideIndex);
+
+	function plusDivs(n) {
+		showDivs(slideIndex += n);
+	}
+
+	function showDivs(n) {
+		var i;
+		var x = document.getElementsByClassName("mySlides");
+		if (n > x.length) {slideIndex = 1}    
+			if (n < 1) {slideIndex = x.length}
+				for (i = 0; i < x.length; i++) {
+					x[i].style.display = "none";  
+				}
+				x[slideIndex-1].style.display = "block";  
+			}
+		</script>
+	</body>
+	</html>
+
+<!--<div class="navbar">
+		<a href="">Prijava</a>
+		<a href="">English<img src="sliki/lan.png"id="lan" alt="lan"></a>
+		<a href="">Contact us<img src="sliki/contact.png"id="contact" alt="contact"></a>
+		<a href="">About us<img src="sliki/info.png"id="info" alt="info"></a>
+		<a href="">Your Trip <img src="sliki/plane.png"id="trip" alt="trip"></a>		
+		<a href="">Home <img src="sliki/ss.jpg"id="home" alt="home"></a>
+		<img src="sliki/logotocno.png" id="logo" alt="logo">
+	</div> -->
+	 <!--<div class="navbar">
+		<button class="btn1" href="">Prijava</button>
+		<button class="btn2" href="">English<img src="sliki/lan.png" id="lan" alt="lan"></button>
+		<button class="btn3" href="">Contact us<img src="sliki/contact.png"id="contact" alt="contact"></button>
+		<button class="btn4" href="">About us<img src="sliki/info.png"id="info" alt="info"></button>
+		<div class="dropdown">
+		<button class="btn5" href="">Your Trip <img src="sliki/plane.png"id="trip" alt="trip"></button>
+		<div class="dropdown-content">
+  			<a href="#">Link 1</a>
+  			<a href="#">Link 2</a>
+ 			<a href="#">Link 3</a>
+ 			</div>
+ 		</div>	
+		<button class="btn6" href="">Home <img src="sliki/ss.jpg"id="home" alt="home"></button>
+		<img src="sliki/logotocno.png" id="logo" alt="logo">
+	</div> -->
