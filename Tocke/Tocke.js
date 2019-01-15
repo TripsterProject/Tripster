@@ -164,7 +164,7 @@ function newDropoff(coords) {
     });
 
     if (data.waypoints.length === 12) {
-      window.alert('Maximum number of points reached. Read more at mapbox.com/api-documentation/#optimization.');
+      window.alert('Maximum number of points reached.');
     }
   });
 }
